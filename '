@@ -37,8 +37,6 @@ def check_for_winner():
         diagonal.append(grid[row][idx] for idx, row in enumerate(grid))
         diagonal.append(grid[row][2 - idx] for idx, row in enumerate(grid))
 
-        print(diagonal)
-
         return check_row(diagonal)
 
     print(check_row(game_board))
