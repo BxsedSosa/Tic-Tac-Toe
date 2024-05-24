@@ -1,16 +1,24 @@
 """Imports"""
 
-from game_logic import check_game_winner, ask_player_position, get_cpu_position
-from display import update_display, display_start
+from display import display_game, update_board
+from game_logic import ask_player_position, check_for_winner_round
 
+board = [["-"] * 3 for _ in range(3)]
 
-def game_loop():
-    """Starts up the game"""
-    display_start()
+while True:
+    player, cpu = 0, 0
 
-    while check_game_winner():
-        update_display(ask_player_position(), "x")
-        update_display(get_cpu_position(), "o")
+    display_game()
+    player_move = ask_player_position()
+    update_board(player_move)
+    result = check_for_winner_round()
 
+    if result == "player":
+        player += 1
+    elif result == "cpu":
+        cpu += 1
 
-game_loop()
+    if player == 3:
+        break
+    elif cpu == 3:
+        break
